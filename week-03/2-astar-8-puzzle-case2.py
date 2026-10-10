@@ -1,3 +1,6 @@
+"""8-Puzzle using A* search.  Case 2: f(n) = g(n) + h(n)
+g(n) = depth of the node, h(n) = Manhattan distance."""
+
 import heapq
 
 INITIAL = (2, 8, 3, 1, 6, 4, 7, 0, 5)
@@ -60,7 +63,8 @@ while frontier:
     if state == GOAL:
         print(f"Solution found in {len(path)} moves:\n")
         for move, s in path:
-            print(f"Move: {move}")
+            g = g_cost[s]
+            print(f"Move: {move}  (g={g}, h={heuristic(s)}, f={g + heuristic(s)})")
             print_state(s)
         break
 
